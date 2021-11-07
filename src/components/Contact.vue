@@ -38,11 +38,11 @@
     </div>
 </template>
 
-<script>
+<!-- <script>
 export default {
-    name: 'ContactPage'
+    name: 'Contact'
 }
-</script>
+</script> -->
 
 <style scoped>
 .cardWidth {

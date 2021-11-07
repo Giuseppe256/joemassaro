@@ -133,11 +133,11 @@
     </div>
 </template>
 
-<script>
+<!-- <script>
 export default {
-    name: 'ProjectsPage'
+    name: 'Projects'
 }
-</script>
+</script> -->
 
 <style scoped>
 .cardWidth {
