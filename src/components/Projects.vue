@@ -100,7 +100,7 @@
                 <b-col md="8" style="px-4">
                     <b-row no-gutters>
                         <b-col cols="3">
-                            <h5 style="text-align: left">About:</h5>
+                            <h5 style="text-align: left;">About:</h5>
                         </b-col>
                         <b-col cols="8">
                             <p style="text-align: left">Website built on WordPress for a school in Dunkirk, NY</p>
@@ -135,7 +135,7 @@
 
 <script>
 export default {
-    name: 'Projects'
+    name: 'ProjectsPage'
 }
 </script>
 
