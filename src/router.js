@@ -2,12 +2,14 @@
 //import Router from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 
-// const Home = () => import('@/components/Home.vue')
-// const Projects = () => import('@/components/Projects.vue')
-// const Contact = () => import('@/components/Contact.vue')
-import Home from './components/Home.vue'
+const Home = () => import(/* webpackChunkName: "group-app" */ './components/Home.vue')
+const Projects = () => import(/* webpackChunkName: "group-app" */ './components/Projects.vue')
+const Contact = () => import(/* webpackChunkName: "group-app" */ './components/Contact.vue')
+
+// import Home from './components/Home.vue'
 // import Projects from './components/Projects.vue'
 // import Contact from './components/Contact.vue'
+
 /*
 const routes = [
   { 
@@ -36,12 +38,12 @@ const routes = [
   { 
     path: '/projects',
     name: 'Projects',
-    component: () => import('./components/Projects.vue')
+    component: Projects
   },
   { 
     path: '/contact', 
     name: 'Contact',
-    component: () => import('./components/Contact.vue')
+    component: Contact
   }
 ]
 

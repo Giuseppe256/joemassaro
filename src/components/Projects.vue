@@ -17,15 +17,16 @@
                 <b-col md="8" style="px-4">
                     <b-row no-gutters>
                         <b-col cols="3">
-                            <h5 style="text-align: left">About:</h5>
+                            <!-- <h5 style="text-align: left">About:</h5> -->
+                            <h5>About:</h5>
                         </b-col>
                         <b-col cols="8">
-                            <p style="text-align: left">Website built on WordPress for a non-profit organiztion in Evansville, IN</p>
+                            <p style="text-align: left;">Website built on WordPress for a non-profit organiztion in Evansville, IN</p>
                         </b-col>
                     </b-row>
                     <b-row no-gutters>
                         <b-col cols="3">
-                            <h5 style="text-align: left">My role:</h5>
+                            <h5 style="text-align: left;">My role:</h5>
                         </b-col>
                         <b-col cols="8">
                             <ul style="text-align: left; padding-inline-start: 20px">
@@ -59,15 +60,15 @@
                 <b-col md="8" style="px-4">
                     <b-row no-gutters>
                         <b-col cols="3">
-                            <h5 style="text-align: left">About:</h5>
+                            <h5 style="text-align: left;">About:</h5>
                         </b-col>
                         <b-col cols="8">
-                            <p style="text-align: left">Website built on WordPress for a church in Dunkirk, NY</p>
+                            <p style="text-align: left;">Website built on WordPress for a church in Dunkirk, NY</p>
                         </b-col>
                     </b-row>
                     <b-row no-gutters>
                         <b-col cols="3">
-                            <h5 style="text-align: left">My role:</h5>
+                            <h5 style="text-align: left;">My role:</h5>
                         </b-col>
                         <b-col cols="8">
                             <ul style="text-align: left; padding-inline-start: 20px">
