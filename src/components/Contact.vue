@@ -6,8 +6,7 @@
         <b-card class="cardWidth" border-variant="dark">
           <b-row no-gutters>
             <b-col md="4">
-              <!-- <b-card-img class="mb-2" src="./assets/beer.jpg" img-alt="Pic of Joe"></b-card-img> -->
-              <b-card-img class="mb-2" src="@/assets/beer.jpg" img-alt="Pic of Joe"></b-card-img>
+              <b-card-img class="mb-2" :src="require('@/assets/beer.jpg')" img-alt="Pic of Joe"></b-card-img>
             </b-col>
             <b-col md="8">
               <b-container fluid class="mb-2">
