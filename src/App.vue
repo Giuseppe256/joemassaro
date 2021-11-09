@@ -1,12 +1,12 @@
 <template>
-  <div class="mt-0" style="min-height: 100vh;" id="app">
+  <div class="mt-0" id="app">
     <div class="mx-0 px-0 pt-0">
       <NavBar />
     </div>
-    <router-view style="padding-top: 56px; padding-bottom: 8vh;" />
+    <router-view id="page-content" />
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <Home msg="Welcome to Your Vue.js App"/> -->
-    <Footer style="position: fixed; bottom: 0; width: 100vw;" />
+    <Footer />
   </div>
 </template>
 
@@ -47,9 +47,14 @@ export default {
   color: #DCDCDC;
   margin-top: 60px;
   background-color: #1c1e21;
+  position: relative;
+  min-height: calc(100vh - 60px);
+}
+#page-content {
+  padding-bottom: 60px;
 }
 .pageHeader {
-  margin-top: 8px;
+  padding-top: 20px;
 }
 .cardWidth {
   max-width: 90%;
