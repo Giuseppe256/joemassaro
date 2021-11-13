@@ -5,28 +5,88 @@
 
         <b-card class="cardWidth" border-variant="dark">
           <b-row no-gutters>
+            <!-- Picture Column -->
             <b-col md="4">
-              <b-card-img class="mb-2" :src="require('@/assets/beer.jpg')" img-alt="Pic of Joe"></b-card-img>
+              <b-card-img :src="require('@/assets/joe-portrait.jpg')" img-alt="Pic of Joe"></b-card-img>
             </b-col>
-            <b-col md="8">
-              <b-container fluid class="mb-2">
-                <h3>Joe Massaro</h3>
-                <b-button variant="primary" onclick="this.blur();" href="https://www.linkedin.com/in/massarojoe/" target="_blank">See Me on LinkedIn!</b-button>
-              </b-container>
-              
-              <b-container fluid class="mb-2">
-                <h5>massaro.jp256@gmail.com</h5>
-                <b-button variant="success" onclick="this.blur();" href="mailto:massaro.jp256@gmail.com?subject=Project%20Proposal">Send Me an Email!</b-button>
-              </b-container>
 
+            <!-- Content Column -->
+            <b-col md="8">
               <b-container fluid>
-                <h5>(812) 304-9419</h5>
-                <b-row align-h="center">
-                  <b-col sm="2">
-                    <b-button class="mb-2" variant="info" onclick="this.blur();" href="tel://+18123049419">Call Me!</b-button>
+                <!-- Name -->
+                <b-row no-gutters class="my-4">
+                  <h2>Joe Massaro</h2>
+                </b-row>
+
+                <!-- Email -->
+                <b-row no-gutters class="mb-4">
+                  <b-col cols="8" class="align-left">
+                    <b-row no-gutters>
+                      <h3>Email</h3>
+                    </b-row>
+                    <b-row no-gutters>
+                      <h5><a href="mailto:massaro.jp256@gmail.com?subject=Project%20Proposal">massaro.jp256@gmail.com</a></h5>
+                    </b-row>                  </b-col>
+                  <b-col cols="4">
+                    <b-link onclick="this.blur();" href="mailto:massaro.jp256@gmail.com?subject=Project%20Proposal">
+                      <b-img class="icon-size" :src="require('@/assets/email-icon.svg')"></b-img>
+                    </b-link>
                   </b-col>
-                  <b-col sm="2">
-                    <b-button variant="warning" onclick="this.blur();" href="sms://+18123049419">Text Me!</b-button>
+                </b-row>
+
+                <!-- Github -->
+                <b-row no-gutters class="mb-4">
+                  <b-col cols="8" class="align-left">
+                    <b-row no-gutters>
+                      <h3>GitHub</h3>
+                    </b-row>
+                    <b-row no-gutters>
+                      <h5><a href="https://github.com/Giuseppe256" target="_blank">https://github.com/Giuseppe256</a></h5>
+                    </b-row>
+                  </b-col>
+                  <b-col cols="4">
+                    <b-link onclick="this.blur();" href="https://github.com/Giuseppe256" target="_blank">
+                      <b-img class="icon-size" :src="require('@/assets/GitHub-icon.png')"></b-img>
+                    </b-link>
+                  </b-col>
+                </b-row>
+
+                <!-- LinkedIn -->
+                <b-row no-gutters class="mb-4">
+                  <b-col cols="8" class="align-left">
+                    <b-row no-gutters>
+                      <h3>LinkedIn</h3>
+                    </b-row>
+                    <b-row no-gutters>
+                      <h5><a href="https://www.linkedin.com/in/massarojoe/" target="_blank">https://www.linkedin.com/in/massarojoe</a></h5>
+                    </b-row>
+                  </b-col>
+                  <b-col cols="4">
+                    <b-link onclick="this.blur();" href="https://www.linkedin.com/in/massarojoe/" target="_blank">
+                      <b-img class="icon-size" :src="require('@/assets/linkedin-icon.svg')"></b-img>
+                    </b-link>
+                  </b-col>
+                </b-row>
+
+                <!-- Phone -->
+                <b-row no-gutters class="mb-4">
+                  <b-col cols="8" class="align-left">
+                    <b-row no-gutters>
+                      <h3>Phone</h3>
+                    </b-row>
+                    <b-row no-gutters>
+                      <h5>(812) 304-9419</h5>
+                    </b-row>
+                  </b-col>
+                  <b-col cols="2" class="align-right">
+                    <b-link onclick="this.blur();" href="tel://+18123049419">
+                      <b-img class="icon-size" :src="require('@/assets/phone-icon.svg')"></b-img>
+                    </b-link>
+                  </b-col>
+                  <b-col cols="2" class="align-left">
+                    <b-link onclick="this.blur();" href="sms://+18123049419">
+                      <b-img class="icon-size" :src="require('@/assets/text-icon.svg')"></b-img>
+                    </b-link>
                   </b-col>
                 </b-row>
               </b-container>
@@ -46,5 +106,28 @@ export default {
 <style scoped>
 .cardWidth {
     background-color: #404040;
+}
+.align-left {
+  text-align: left;
+}
+.align-right {
+  text-align: right;
+}
+.icon-size {
+  height: 80px;
+}
+@media only screen and (max-width: 1000px) {
+  .icon-size {
+    height: 60px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .icon-size {
+    height: 50px;
+  }
+}
+a {
+  color: #DCDCDC;
+  text-decoration: none; /* no underline */
 }
 </style>
