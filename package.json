@@ -1,13 +1,14 @@
 {
   "name": "joemassaro",
   "version": "1.0.0",
-  "private": true,
-  "description": "## Project setup ``` npm install ```",
+  "private": false,
+  "description": "Joe Massaro's Personal Website",
   "author": "Joe Massaro",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "sitemap": "vue-cli-service sitemap"
   },
   "main": "babel.config.js",
   "dependencies": {
@@ -30,6 +31,7 @@
     "@vue/compiler-sfc": "^3.1.0-0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
+    "vue-cli-plugin-sitemap": "~2.3.0",
     "webpack": "^5.62.1"
   },
   "eslintConfig": {
