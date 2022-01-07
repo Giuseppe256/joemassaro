@@ -53,6 +53,7 @@
 }
 .brand {
     display: list-item;
+    list-style-type: none;
     padding-left: 20px;
 }
 .router-link {
