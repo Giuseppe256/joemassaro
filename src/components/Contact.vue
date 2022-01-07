@@ -89,6 +89,58 @@
                     </b-link>
                   </b-col>
                 </b-row>
+                
+                <!-- Contact Form -->
+                <b-row no-gutters>
+                  <h2>Send me a message</h2>
+                  <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+                    <!-- Email -->
+                    <b-form-group id="input-group-1" label-cols="4" content-cols="8" label-size="lg" label-align="left" label="Email address:" label-for="input-1">
+                      <b-form-input
+                        id="input-1"
+                        v-model="form.email"
+                        type="email"
+                        placeholder="Enter email"
+                        required
+                      ></b-form-input>
+                    </b-form-group>
+
+                    <!-- Name -->
+                    <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+                      <b-form-input
+                        id="input-2"
+                        v-model="form.name"
+                        placeholder="Enter name"
+                        required
+                      ></b-form-input>
+                    </b-form-group>
+
+                    <!-- Subject -->
+                    <b-form-group id="input-group-3" label="Subject:" label-for="input-3">
+                      <b-form-input
+                        id="input-3"
+                        v-model="form.subject"
+                        placeholder="Subject"
+                        required
+                      ></b-form-input>
+                    </b-form-group>
+
+                    <!-- Message -->
+                    <b-form-group id="input-group-4" label="Message:" label-for="input-4">
+                      <b-form-textarea
+                        id="input-4"
+                        v-model="form.message"
+                        placeholder="Message"
+                        required
+                      ></b-form-textarea>
+                    </b-form-group>
+
+                    <!-- Submit Button -->
+                    <b-button type="submit" variant="primary">Submit</b-button>
+                    <!-- Reset Button -->
+                    <b-button type="reset" variant="danger">Reset</b-button>
+                  </b-form>
+                </b-row>
               </b-container>
             </b-col>
           </b-row>
@@ -97,11 +149,40 @@
     </div>
 </template>
 
-<!-- <script>
+<script>
 export default {
-    name: 'Contact'
+  data() {
+    return {
+      form: {
+        email: '',
+        name: '',
+        subject: '',
+        message: ''
+      },
+      show: true
+    }
+  },
+  methods: {
+    onSubmit(event) {
+      event.preventDefault()
+      alert(JSON.stringify(this.form))
+    },
+    onReset(event) {
+      event.preventDefault()
+      // Reset form values
+      this.form.email = ''
+      this.form.name = ''
+      this.form.subject = ''
+      this.form.message = ''
+      // Trick to reset/clear native browser form validation state
+      this.show = false
+      this.$nextTick(() => {
+        this.show = true
+      })
+    }
+  }
 }
-</script> -->
+</script>
 
 <style scoped>
 .cardWidth {
@@ -128,6 +209,6 @@ export default {
 }
 a {
   color: #DCDCDC;
-  text-decoration: none; /* no underline */
+  text-decoration: none;
 }
 </style>
