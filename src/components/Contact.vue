@@ -185,7 +185,6 @@
 <script>
 import emailjs from '@emailjs/browser';
 import VueGoogleAutocomplete from 'vue-google-autocomplete';
-import { google } from 'google-maps';
 
 export default {
   components: { VueGoogleAutocomplete },
