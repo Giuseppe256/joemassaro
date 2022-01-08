@@ -202,9 +202,6 @@ export default {
       show: true
     }
   },
-  mounted() {
-    this.userAddress.focus();
-  },
   methods: {
     getAddressData: function (addressData, placeResultData, id) {
       this.userAddress = addressData;
