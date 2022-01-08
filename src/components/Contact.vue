@@ -91,25 +91,54 @@
                 </b-row>
                 
                 <!-- Contact Form -->
-                <b-row no-gutters>
+                <b-row no-gutters v-if="show">
                   <h2>Send me a message</h2>
-                  <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+                  <b-form @submit="onSubmit" @reset="onReset" ref="form">
                     <!-- Email -->
                     <b-form-group id="input-group-1" label-cols="4" content-cols="8" label-size="lg" label-align="left" label="Email address:" label-for="input-1">
                       <b-form-input
                         id="input-1"
-                        v-model="form.email"
+                        v-model="form.userEmail"
                         type="email"
                         placeholder="Enter email"
                         required
                       ></b-form-input>
                     </b-form-group>
 
+                    <!-- Phone -->
+                    <b-form-group id="input-group-5" label-cols="4" content-cols="8" label-size="lg" label-align="left" label="Phone number:" label-for="input-5">
+                      <b-form-input
+                        id="input-5"
+                        v-model="form.userPhone"
+                        type="tel"
+                        placeholder="Enter phone number"
+                      ></b-form-input>
+                    </b-form-group>
+
+                    <!-- Address -->
+                    <b-form-group id="input-group-6" label-cols="4" content-cols="8" label-size="lg" label-align="left" label="Address:" label-for="input-6">
+                      <!-- <b-form-input
+                        id="input-6"
+                        v-model="form.userAddress"
+                        type="email"
+                        placeholder="Enter address"
+                      ></b-form-input> -->
+                      <vue-google-autocomplete
+                        id="input-6"
+                        v-model="form.userAddress"
+                        classname="form-control"
+                        placeholder="Enter address"
+                        v-on:placechanged="getAddressData"
+                      ></vue-google-autocomplete>
+                    </b-form-group>
+
+                    
+
                     <!-- Name -->
                     <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
                       <b-form-input
                         id="input-2"
-                        v-model="form.name"
+                        v-model="form.userName"
                         placeholder="Enter name"
                         required
                       ></b-form-input>
@@ -141,6 +170,10 @@
                     <b-button type="reset" variant="danger">Reset</b-button>
                   </b-form>
                 </b-row>
+                
+                <b-row no-gutters v-if="!show">
+                  <h3>Message Received, Thank You!</h3>
+                </b-row>
               </b-container>
             </b-col>
           </b-row>
@@ -150,28 +183,48 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
+import VueGoogleAutocomplete from 'vue-google-autocomplete';
+import { google } from 'google-maps';
+
 export default {
+  components: { VueGoogleAutocomplete },
   data() {
     return {
       form: {
-        email: '',
-        name: '',
+        userEmail: '',
+        userPhone: '',
+        userAddress: '',
+        userName: '',
         subject: '',
         message: ''
       },
       show: true
     }
   },
+  mounted() {
+    this.userAddress.focus();
+  },
   methods: {
+    getAddressData: function (addressData, placeResultData, id) {
+      this.userAddress = addressData;
+    },
     onSubmit(event) {
       event.preventDefault()
-      alert(JSON.stringify(this.form))
+      emailjs.send('service_4v2wma8', 'template_cwdruor', this.form, 'user_YibjcvrnO2KJT5IcroZ9b')
+        .then((response) => {
+          console.log('Success!', response.status, response.text);
+          this.show = false;
+        }, (error) => {
+          console.log("Failed...", error.text);
+          alert("Message did not send...Try again");
+      });
     },
     onReset(event) {
       event.preventDefault()
       // Reset form values
-      this.form.email = ''
-      this.form.name = ''
+      this.form.userEmail = ''
+      this.form.userName = ''
       this.form.subject = ''
       this.form.message = ''
       // Trick to reset/clear native browser form validation state
