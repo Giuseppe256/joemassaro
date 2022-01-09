@@ -95,7 +95,7 @@
                   <h2>Send me a message</h2>
                   <b-form @submit="onSubmit" @reset="onReset" ref="form">
                     <!-- Email -->
-                    <b-form-group id="input-group-1" label-cols="4" content-cols="8" label-size="lg" label-align="left" label="Email address:" label-for="input-1">
+                    <b-form-group id="input-group-1" label-cols="4" content-cols="8" label-align="left" label="Email address:" label-for="input-1">
                       <b-form-input
                         id="input-1"
                         v-model="form.userEmail"
@@ -106,7 +106,7 @@
                     </b-form-group>
 
                     <!-- Phone -->
-                    <b-form-group id="input-group-5" label-cols="4" content-cols="8" label-size="lg" label-align="left" label="Phone number:" label-for="input-5">
+                    <b-form-group id="input-group-5" label-cols="4" content-cols="8" label-align="left" label="Phone number:" label-for="input-5">
                       <b-form-input
                         id="input-5"
                         v-model="form.userPhone"
@@ -116,23 +116,15 @@
                     </b-form-group>
 
                     <!-- Address -->
-                    <b-form-group id="input-group-6" label-cols="4" content-cols="8" label-size="lg" label-align="left" label="Address:" label-for="input-6">
-                      <!-- <b-form-input
-                        id="input-6"
-                        v-model="form.userAddress"
-                        type="email"
-                        placeholder="Enter address"
-                      ></b-form-input> -->
+                    <b-form-group id="input-group-6" label-cols="4" content-cols="8" label-align="left" label="Address:" label-for="input-6">
                       <vue-google-autocomplete
                         id="input-6"
-                        v-model="form.userAddress"
+                        ref="userAddress"
                         classname="form-control"
                         placeholder="Enter address"
                         v-on:placechanged="getAddressData"
                       ></vue-google-autocomplete>
                     </b-form-group>
-
-                    
 
                     <!-- Name -->
                     <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
@@ -193,11 +185,11 @@ export default {
       form: {
         userEmail: '',
         userPhone: '',
-        userAddress: '',
         userName: '',
         subject: '',
         message: ''
       },
+      userAddress: '',
       show: true
     }
   },
@@ -206,8 +198,16 @@ export default {
       this.userAddress = addressData;
     },
     onSubmit(event) {
-      event.preventDefault()
-      emailjs.send('service_4v2wma8', 'template_cwdruor', this.form, 'user_YibjcvrnO2KJT5IcroZ9b')
+      event.preventDefault();
+      let formData = {
+        userEmail: this.form.userEmail,
+        userPhone: this.form.userPhone,
+        userAddress: addressToString(this.userAddress),
+        userName: this.form.userName,
+        subject: this.form.subject,
+        message: this.form.message
+      }
+      emailjs.send('service_4v2wma8', 'template_cwdruor', formData, 'user_YibjcvrnO2KJT5IcroZ9b')
         .then((response) => {
           console.log('Success!', response.status, response.text);
           this.show = false;
@@ -219,17 +219,29 @@ export default {
     onReset(event) {
       event.preventDefault()
       // Reset form values
-      this.form.userEmail = ''
-      this.form.userName = ''
-      this.form.subject = ''
-      this.form.message = ''
+      this.form.userEmail = '';
+      this.form.userPhone = '';
+      this.form.userAddress = '';
+      this.form.userName = '';
+      this.form.subject = '';
+      this.form.message = '';
       // Trick to reset/clear native browser form validation state
-      this.show = false
+      this.show = false;
       this.$nextTick(() => {
-        this.show = true
-      })
+        this.show = true;
+      });
     }
   }
+}
+
+function addressToString(addressData) {
+  let output = "";
+  if (addressData.street_number == undefined) {
+  }
+  else {
+    output = addressData.street_number + " " + addressData.route + ", " + addressData.locality + ", " + addressData.administrative_area_level_1 + " " + addressData.postal_code;
+  }
+  return output;
 }
 </script>
 
