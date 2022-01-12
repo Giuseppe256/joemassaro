@@ -29,7 +29,10 @@
                     </b-row>                  </b-col>
                   <b-col cols="4">
                     <b-link onclick="this.blur();" href="mailto:massaro.jp256@gmail.com?subject=Project%20Proposal">
-                      <b-img class="icon-size" :src="require('@/assets/email-icon.svg')"></b-img>
+                      <b-icon-envelope-fill
+                        variant="warning"
+                        class="icon-size"
+                      ></b-icon-envelope-fill>
                     </b-link>
                   </b-col>
                 </b-row>
@@ -46,7 +49,9 @@
                   </b-col>
                   <b-col cols="4">
                     <b-link onclick="this.blur();" href="https://github.com/Giuseppe256" target="_blank">
-                      <b-img class="icon-size" :src="require('@/assets/GitHub-icon.png')"></b-img>
+                      <b-icon-github
+                        class="icon-size"
+                      ></b-icon-github>
                     </b-link>
                   </b-col>
                 </b-row>
@@ -63,7 +68,10 @@
                   </b-col>
                   <b-col cols="4">
                     <b-link onclick="this.blur();" href="https://www.linkedin.com/in/massarojoe/" target="_blank">
-                      <b-img class="icon-size" :src="require('@/assets/linkedin-icon.svg')"></b-img>
+                      <b-icon-linkedin
+                        style="color: #0072b1; background-color: white; border-radius: 15px;"
+                        class="icon-size"
+                      ></b-icon-linkedin>
                     </b-link>
                   </b-col>
                 </b-row>
@@ -78,14 +86,20 @@
                       <h5>(812) 304-9419</h5>
                     </b-row>
                   </b-col>
-                  <b-col cols="2" class="align-right">
+                  <b-col cols="2">
                     <b-link onclick="this.blur();" href="tel://+18123049419">
-                      <b-img class="icon-size" :src="require('@/assets/phone-icon.svg')"></b-img>
+                      <b-icon-telephone-outbound-fill 
+                        variant="success"
+                        class="icon-size"
+                      ></b-icon-telephone-outbound-fill>
                     </b-link>
                   </b-col>
-                  <b-col cols="2" class="align-left">
+                  <b-col cols="2">
                     <b-link onclick="this.blur();" href="sms://+18123049419">
-                      <b-img class="icon-size" :src="require('@/assets/text-icon.svg')"></b-img>
+                      <b-icon-chat-left-text-fill
+                        style="color: #7952b3;"
+                        class="icon-size"
+                      ></b-icon-chat-left-text-fill>
                     </b-link>
                   </b-col>
                 </b-row>
@@ -94,10 +108,20 @@
                 <b-row no-gutters v-if="show">
                   <h2>Send me a message</h2>
                   <b-form @submit="onSubmit" @reset="onReset" ref="form">
-                    <!-- Email -->
-                    <b-form-group id="input-group-1" label-cols="4" content-cols="8" label-align="left" label="Email address:" label-for="input-1">
+                    <!-- Name -->
+                    <b-form-group id="input-group-name" label="Name:" label-for="input-name">
                       <b-form-input
-                        id="input-1"
+                        id="input-name"
+                        v-model="form.userName"
+                        placeholder="Enter name"
+                        required
+                      ></b-form-input>
+                    </b-form-group>
+
+                    <!-- Email -->
+                    <b-form-group id="input-group-email" label-cols="4" content-cols="8" label-align="left" label="Email address:" label-for="input-email">
+                      <b-form-input
+                        id="input-email"
                         v-model="form.userEmail"
                         type="email"
                         placeholder="Enter email"
@@ -106,9 +130,9 @@
                     </b-form-group>
 
                     <!-- Phone -->
-                    <b-form-group id="input-group-5" label-cols="4" content-cols="8" label-align="left" label="Phone number:" label-for="input-5">
+                    <b-form-group id="input-group-phone" label-cols="4" content-cols="8" label-align="left" label="Phone number (optional):" label-for="input-phone">
                       <b-form-input
-                        id="input-5"
+                        id="input-phone"
                         v-model="form.userPhone"
                         type="tel"
                         placeholder="Enter phone number"
@@ -116,30 +140,36 @@
                     </b-form-group>
 
                     <!-- Address -->
-                    <b-form-group id="input-group-6" label-cols="4" content-cols="8" label-align="left" label="Address:" label-for="input-6">
-                      <vue-google-autocomplete
-                        id="input-6"
-                        ref="userAddress"
-                        classname="form-control"
-                        placeholder="Enter address"
-                        v-on:placechanged="getAddressData"
-                      ></vue-google-autocomplete>
-                    </b-form-group>
+                    <b-form-group id="input-group-address" label-cols="4" content-cols="8" label-align="left" label="Address (optional):" label-for="input-address">                      
+                      <b-input-group>
+                        <vue-google-autocomplete
+                          id="input-address"
+                          ref="userAddress"
+                          classname="form-control"
+                          placeholder="Start typing address"
+                          v-on:placechanged="getAddressData"
+                        ></vue-google-autocomplete>
 
-                    <!-- Name -->
-                    <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-                      <b-form-input
-                        id="input-2"
-                        v-model="form.userName"
-                        placeholder="Enter name"
-                        required
-                      ></b-form-input>
+                        <template #append>
+                          <b-button v-on:click="requestLocation" style="background-color: white; border: none;" class="request-location-button">
+                            <b-icon-geo-alt-fill
+                              variant="primary"
+                            ></b-icon-geo-alt-fill>
+                          </b-button>
+                        </template>
+                        <!-- <b-icon-geo-alt-fill
+                          variant="primary"
+                          shift-v="28"
+                          shift-h="185"
+                          class="location-icon"
+                        ></b-icon-geo-alt-fill> -->
+                      </b-input-group>
                     </b-form-group>
 
                     <!-- Subject -->
-                    <b-form-group id="input-group-3" label="Subject:" label-for="input-3">
+                    <b-form-group id="input-group-subject" label="Subject:" label-for="input-subject">
                       <b-form-input
-                        id="input-3"
+                        id="input-subject"
                         v-model="form.subject"
                         placeholder="Subject"
                         required
@@ -147,9 +177,9 @@
                     </b-form-group>
 
                     <!-- Message -->
-                    <b-form-group id="input-group-4" label="Message:" label-for="input-4">
+                    <b-form-group id="input-group-message" label="Message:" label-for="input-message">
                       <b-form-textarea
-                        id="input-4"
+                        id="input-message"
                         v-model="form.message"
                         placeholder="Message"
                         required
@@ -157,7 +187,7 @@
                     </b-form-group>
 
                     <!-- Submit Button -->
-                    <b-button type="submit" variant="primary">Submit</b-button>
+                    <b-button type="submit" variant="primary">Send</b-button>
                     <!-- Reset Button -->
                     <b-button type="reset" variant="danger">Reset</b-button>
                   </b-form>
@@ -179,7 +209,9 @@ import emailjs from '@emailjs/browser';
 import VueGoogleAutocomplete from 'vue-google-autocomplete';
 
 export default {
-  components: { VueGoogleAutocomplete },
+  components: { 
+    VueGoogleAutocomplete
+  },
   data() {
     return {
       form: {
@@ -230,6 +262,9 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
+    },
+    requestLocation() {
+      this.$refs.userAddress.geolocate();
     }
   }
 }
@@ -257,19 +292,30 @@ function addressToString(addressData) {
 }
 .icon-size {
   height: 80px;
+  width: 80px;
 }
 @media only screen and (max-width: 1000px) {
   .icon-size {
     height: 60px;
+    width: 60px;
   }
 }
 @media only screen and (max-width: 767px) {
   .icon-size {
     height: 50px;
+    width: 50px;
   }
 }
 a {
   color: #DCDCDC;
   text-decoration: none;
 }
+.request-location-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+/* .location-icon {
+  position: absolute;
+  z-index: 1;
+} */
 </style>
