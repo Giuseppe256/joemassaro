@@ -151,18 +151,12 @@
                         ></vue-google-autocomplete>
 
                         <template #append>
-                          <b-button v-on:click="requestLocation" style="background-color: white; border: none;" class="request-location-button">
+                          <b-button v-on:click="requestLocation" style="background-color: white; border: none;">
                             <b-icon-geo-alt-fill
                               variant="primary"
                             ></b-icon-geo-alt-fill>
                           </b-button>
                         </template>
-                        <!-- <b-icon-geo-alt-fill
-                          variant="primary"
-                          shift-v="28"
-                          shift-h="185"
-                          class="location-icon"
-                        ></b-icon-geo-alt-fill> -->
                       </b-input-group>
                     </b-form-group>
 
@@ -310,12 +304,4 @@ a {
   color: #DCDCDC;
   text-decoration: none;
 }
-.request-location-button:focus {
-  outline: none;
-  box-shadow: none;
-}
-/* .location-icon {
-  position: absolute;
-  z-index: 1;
-} */
 </style>
