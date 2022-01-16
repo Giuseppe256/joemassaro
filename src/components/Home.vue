@@ -4,9 +4,15 @@
     <br>
     <br>
     <br>
-    <p>Not much to see here yet...</p>
+    <b-link href="/Joe Massaro Resume.pdf" target="_blank">
+      <b-button pill size="lg" variant="primary">Download Resume
+        <b-icon-download aria-hidden="true"></b-icon-download>
+      </b-button>
+    </b-link>
     <br>
-    <p>Check out the <router-link to="/projects">Projects</router-link> and <router-link to="/contact">Contact</router-link> pages!</p>
+    <br>
+    <br>
+    <br>
   </div>
 </template>
 
