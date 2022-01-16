@@ -94,6 +94,9 @@ export default {
         background-color: #212529;
         margin-top: -8px;
     }
+    .router-link {
+        margin-top: -8px;
+    }
 }
 .router-link {
     color: rgba(255, 255, 255, 0.75);
@@ -119,6 +122,10 @@ export default {
     .iconList li:hover .tooltipText {
         visibility: visible;
     }
+    .iconList li:hover {
+        border-radius: 10px;
+    }
+
 
 }
 .iconList svg {
@@ -127,7 +134,6 @@ export default {
 }
 .iconList li:hover {
     background-color: black;
-    border-radius: 10px;
 }
 .toggleButton {
     margin-right: 30px;

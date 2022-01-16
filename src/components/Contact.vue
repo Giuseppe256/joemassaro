@@ -5,7 +5,7 @@
 
         <b-card border-variant="dark" class="cardWidth" style="max-width: 864px;">
           <b-row no-gutters>
-            <b-col md="6">
+            <b-col class="pictureMarginBelow" md="6">
               <b-card-img :src="require('@/assets/joe-portrait.jpg')" img-alt="Pic of Joe"></b-card-img>
             </b-col>
             <b-col md="6" v-if="show">
@@ -193,5 +193,10 @@ function addressToString(addressData) {
 a {
   color: #DCDCDC;
   text-decoration: none;
+}
+@media only screen and (max-width: 767px) {
+  .pictureMarginBelow {
+    margin-bottom: 20px;
+  }
 }
 </style>
