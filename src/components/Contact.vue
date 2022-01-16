@@ -3,93 +3,100 @@
         <h1 class="pageHeader">Contact</h1>
         <br/>
 
-        <b-card class="cardWidth" border-variant="dark">
+        <b-card border-variant="dark" class="cardWidth" style="max-width: 864px;">
           <b-row no-gutters>
-            <!-- Picture Column -->
-            <b-col md="4">
+            <b-col md="6">
               <b-card-img :src="require('@/assets/joe-portrait.jpg')" img-alt="Pic of Joe"></b-card-img>
             </b-col>
-
-            <!-- Content Column -->
-            <b-col md="8">
-              <b-container fluid>
+            <b-col md="6" v-if="show">
+              <b-card-title style="text-align: center;">Send me a message!</b-card-title>
+              <b-form id="contact-form" @submit="onSubmit" @reset="onReset" ref="form">
                 <!-- Name -->
-                <b-row no-gutters class="my-4">
-                  <h2>Joe Massaro</h2>
-                </b-row>
+                <b-form-group id="input-group-name" label="Name:" label-for="input-name">
+                  <b-form-input
+                    id="input-name"
+                    v-model="form.userName"
+                    placeholder="Enter name"
+                    required
+                  ></b-form-input>
+                </b-form-group>
 
                 <!-- Email -->
-                <b-row no-gutters class="mb-4">
-                  <b-col cols="8" class="align-left">
-                    <b-row no-gutters>
-                      <h3>Email</h3>
-                    </b-row>
-                    <b-row no-gutters>
-                      <h5><a href="mailto:massaro.jp256@gmail.com?subject=Project%20Proposal">massaro.jp256@gmail.com</a></h5>
-                    </b-row>                  </b-col>
-                  <b-col cols="4">
-                    <b-link onclick="this.blur();" href="mailto:massaro.jp256@gmail.com?subject=Project%20Proposal">
-                      <b-img class="icon-size" :src="require('@/assets/email-icon.svg')"></b-img>
-                    </b-link>
-                  </b-col>
-                </b-row>
-
-                <!-- Github -->
-                <b-row no-gutters class="mb-4">
-                  <b-col cols="8" class="align-left">
-                    <b-row no-gutters>
-                      <h3>GitHub</h3>
-                    </b-row>
-                    <b-row no-gutters>
-                      <h5><a href="https://github.com/Giuseppe256" target="_blank">https://github.com/Giuseppe256</a></h5>
-                    </b-row>
-                  </b-col>
-                  <b-col cols="4">
-                    <b-link onclick="this.blur();" href="https://github.com/Giuseppe256" target="_blank">
-                      <b-img class="icon-size" :src="require('@/assets/GitHub-icon.png')"></b-img>
-                    </b-link>
-                  </b-col>
-                </b-row>
-
-                <!-- LinkedIn -->
-                <b-row no-gutters class="mb-4">
-                  <b-col cols="8" class="align-left">
-                    <b-row no-gutters>
-                      <h3>LinkedIn</h3>
-                    </b-row>
-                    <b-row no-gutters>
-                      <h5><a href="https://www.linkedin.com/in/massarojoe/" target="_blank">https://www.linkedin.com/in/massarojoe</a></h5>
-                    </b-row>
-                  </b-col>
-                  <b-col cols="4">
-                    <b-link onclick="this.blur();" href="https://www.linkedin.com/in/massarojoe/" target="_blank">
-                      <b-img class="icon-size" :src="require('@/assets/linkedin-icon.svg')"></b-img>
-                    </b-link>
-                  </b-col>
-                </b-row>
+                <b-form-group id="input-group-email" label-cols="4" content-cols="8" label="Email address:" label-for="input-email">
+                  <b-form-input
+                    id="input-email"
+                    v-model="form.userEmail"
+                    type="email"
+                    placeholder="Enter email"
+                    required
+                  ></b-form-input>
+                </b-form-group>
 
                 <!-- Phone -->
-                <b-row no-gutters class="mb-4">
-                  <b-col cols="8" class="align-left">
-                    <b-row no-gutters>
-                      <h3>Phone</h3>
-                    </b-row>
-                    <b-row no-gutters>
-                      <h5>(812) 304-9419</h5>
-                    </b-row>
+                <b-form-group id="input-group-phone" label-cols="4" content-cols="8" label-align="left" label="Phone number (optional):" label-for="input-phone">
+                  <b-form-input
+                    id="input-phone"
+                    v-model="form.userPhone"
+                    type="tel"
+                    placeholder="Enter phone number"
+                  ></b-form-input>
+                </b-form-group>
+
+                <!-- Address -->
+                <b-form-group id="input-group-address" label-cols="4" content-cols="8" label-align="left" label="Address (optional):" label-for="input-address">                      
+                  <b-input-group>
+                    <vue-google-autocomplete
+                      id="input-address"
+                      ref="userAddress"
+                      classname="form-control"
+                      placeholder="Start typing address"
+                      v-on:placechanged="getAddressData"
+                    ></vue-google-autocomplete>
+
+                    <template #append>
+                      <b-button v-on:click="requestLocation" style="background-color: white; border: none;">
+                        <b-icon-geo-alt-fill
+                          variant="primary"
+                        ></b-icon-geo-alt-fill>
+                      </b-button>
+                    </template>
+                  </b-input-group>
+                </b-form-group>
+
+                <!-- Subject -->
+                <b-form-group id="input-group-subject" label="Subject:" label-for="input-subject">
+                  <b-form-input
+                    id="input-subject"
+                    v-model="form.subject"
+                    placeholder="Subject"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+
+                <!-- Message -->
+                <b-form-group id="input-group-message" label="Message:" label-for="input-message">
+                  <b-form-textarea
+                    id="input-message"
+                    v-model="form.message"
+                    placeholder="Message"
+                    required
+                  ></b-form-textarea>
+                </b-form-group>
+
+                <b-row no-gutters>
+                  <b-col class="align-right">
+                    <!-- Submit Button -->
+                    <b-button type="submit" variant="primary">Send</b-button>
                   </b-col>
-                  <b-col cols="2" class="align-right">
-                    <b-link onclick="this.blur();" href="tel://+18123049419">
-                      <b-img class="icon-size" :src="require('@/assets/phone-icon.svg')"></b-img>
-                    </b-link>
-                  </b-col>
-                  <b-col cols="2" class="align-left">
-                    <b-link onclick="this.blur();" href="sms://+18123049419">
-                      <b-img class="icon-size" :src="require('@/assets/text-icon.svg')"></b-img>
-                    </b-link>
+                  <b-col>
+                    <!-- Reset Button -->
+                    <b-button type="reset" variant="danger">Reset</b-button>
                   </b-col>
                 </b-row>
-              </b-container>
+              </b-form>
+            </b-col>
+            <b-col md="6" v-if="!show">
+              <b-card-title>Message Received, Thank You!</b-card-title>
             </b-col>
           </b-row>
         </b-card>
@@ -97,37 +104,94 @@
     </div>
 </template>
 
-<!-- <script>
+<script>
+import emailjs from '@emailjs/browser';
+import VueGoogleAutocomplete from 'vue-google-autocomplete';
+
 export default {
-    name: 'Contact'
+  components: { 
+    VueGoogleAutocomplete
+  },
+  data() {
+    return {
+      form: {
+        userEmail: '',
+        userPhone: '',
+        userName: '',
+        subject: '',
+        message: ''
+      },
+      userAddress: '',
+      show: true
+    }
+  },
+  methods: {
+    getAddressData: function (addressData, placeResultData, id) {
+      this.userAddress = addressData;
+    },
+    onSubmit(event) {
+      event.preventDefault();
+      let formData = {
+        userEmail: this.form.userEmail,
+        userPhone: this.form.userPhone,
+        userAddress: addressToString(this.userAddress),
+        userName: this.form.userName,
+        subject: this.form.subject,
+        message: this.form.message
+      }
+      emailjs.send('service_4v2wma8', 'template_cwdruor', formData, 'user_YibjcvrnO2KJT5IcroZ9b')
+        .then((response) => {
+          console.log('Success!', response.status, response.text);
+          this.show = false;
+        }, (error) => {
+          console.log("Failed...", error.text);
+          alert("Message did not send...Try again");
+      });
+    },
+    onReset(event) {
+      event.preventDefault()
+      // Reset form values
+      this.form.userEmail = '';
+      this.form.userPhone = '';
+      this.form.userAddress = '';
+      this.form.userName = '';
+      this.form.subject = '';
+      this.form.message = '';
+      // Trick to reset/clear native browser form validation state
+      this.show = false;
+      this.$nextTick(() => {
+        this.show = true;
+      });
+    },
+    requestLocation() {
+      this.$refs.userAddress.geolocate();
+    }
+  }
 }
-</script> -->
+
+function addressToString(addressData) {
+  let output = "";
+  if (addressData.street_number == undefined) {
+  }
+  else {
+    output = addressData.street_number + " " + addressData.route + ", " + addressData.locality + ", " + addressData.administrative_area_level_1 + " " + addressData.postal_code;
+  }
+  return output;
+}
+</script>
 
 <style scoped>
 .cardWidth {
     background-color: #404040;
+    text-align: left;
 }
-.align-left {
-  text-align: left;
-}
-.align-right {
-  text-align: right;
-}
-.icon-size {
-  height: 80px;
-}
-@media only screen and (max-width: 1000px) {
-  .icon-size {
-    height: 60px;
-  }
-}
-@media only screen and (max-width: 767px) {
-  .icon-size {
-    height: 50px;
+@media only screen and (min-width: 207px) {
+  .align-right {
+    text-align: right;
   }
 }
 a {
   color: #DCDCDC;
-  text-decoration: none; /* no underline */
+  text-decoration: none;
 }
 </style>

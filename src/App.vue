@@ -4,8 +4,6 @@
       <NavBar />
     </div>
     <router-view id="page-content" />
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <Home msg="Welcome to Your Vue.js App"/> -->
     <Footer />
   </div>
 </template>
@@ -20,21 +18,6 @@ export default {
     NavBar,
     Footer
   }
-  // },
-  // computed: {
-  //   username() {
-  //     return this.$route.params.username
-  //   },
-  // },
-  // methods: {
-  //   goToDashboard() {
-  //     if (isAuthenticated) {
-  //       this.$router.push('/dashboard')
-  //     } else {
-  //       this.$router.push('/login')
-  //     }
-  //   },
-  // }
 }
 </script>
 
