@@ -1,18 +1,11 @@
 <template>
   <div>
-    <h1 class="pageHeader">Home</h1>
-    <br>
-    <br>
-    <br>
+    <h1 id="home-header" class="pageHeader">Home</h1>
     <b-link href="/Joe Massaro Resume.pdf" target="_blank">
       <b-button pill size="lg" variant="primary">Download Resume
         <b-icon-download aria-hidden="true"></b-icon-download>
       </b-button>
     </b-link>
-    <br>
-    <br>
-    <br>
-    <br>
   </div>
 </template>
 
@@ -26,5 +19,8 @@ export default {
 <style scoped>
 a {
   color: #DCDCDC;
+}
+#home-header {
+  margin-bottom: 100px;
 }
 </style>
