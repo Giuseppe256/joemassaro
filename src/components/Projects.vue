@@ -54,7 +54,7 @@
                     target="_blank"
                     size="lg"
                     >
-                        Open
+                        View
                         <b-icon-box-arrow-up-right></b-icon-box-arrow-up-right>
                     </b-button>
                 </b-card-footer>
@@ -167,7 +167,7 @@
                         target="_blank"
                         size="lg"
                         >
-                            Open
+                            View
                             <b-icon-box-arrow-up-right></b-icon-box-arrow-up-right>
                         </b-button>
                 </b-card-footer>
@@ -220,7 +220,7 @@
                         target="_blank"
                         size="lg"
                         >
-                            Open
+                            View
                             <b-icon-box-arrow-up-right></b-icon-box-arrow-up-right>
                         </b-button>
                 </b-card-footer>
